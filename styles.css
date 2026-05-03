@@ -393,6 +393,22 @@ body {
     border-radius: 3px;
     transition: var(--transition);
 }
+.logo-img {
+  width: auto;
+  height: 95px !important;
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    height: 70px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+    height: 40px !important;
+  }
+}
 
 /* ===========================
    HERO SECTION
