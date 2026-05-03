@@ -133,6 +133,27 @@ body {
     max-width: 600px;
     margin: 0 auto;
 }
+.logo-img {
+
+    width: auto;
+    object-fit: contain;
+
+    /* spacing */
+    margin-left: 10px;
+
+    /* smooth look */
+    display: block;
+
+    /* MAGIC EFFECTS 👇 */
+    filter: brightness(1.1) contrast(1.1);
+    transition: all 0.3s ease;
+}
+
+/* Hover effect (optional but 🔥) */
+.logo-img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
 
 /* ===========================
    ANIMATIONS
