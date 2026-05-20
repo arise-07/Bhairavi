@@ -831,7 +831,6 @@ body {
     font-size: 50px;
     margin: 0 auto 25px;
     box-shadow: 0 10px 30px rgba(255, 140, 0, 0.3);
-    border: 3px solid var(--dark-bg);
 }
 
 .faculty-card h3 {
