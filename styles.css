@@ -133,27 +133,7 @@ body {
     max-width: 600px;
     margin: 0 auto;
 }
-.logo-img {
-
-    width: auto;
-    object-fit: contain;
-
-    /* spacing */
-    margin-left: 10px;
-
-    /* smooth look */
-    display: block;
-
-    /* MAGIC EFFECTS 👇 */
-    filter: brightness(1.1) contrast(1.1);
-    transition: all 0.3s ease;
-}
-
-/* Hover effect (optional but 🔥) */
-.logo-img:hover {
-    transform: scale(1.05);
-    filter: brightness(1.2);
-}
+/* logo-img base styles defined in navbar section below */
 
 /* ===========================
    ANIMATIONS
@@ -261,12 +241,7 @@ body {
         opacity: 1;
     }
 }
-@media (max-width: 768px) {
-  #logoImage {
-    width: 70px !important;
-    height: auto !important;
-  }
-}
+/* logo mobile sizing handled in main responsive section */
 
 
 /* ===========================
@@ -283,7 +258,10 @@ body {
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
-    padding: 15px 0;
+    padding: 18px 0;
+    height: 110px;
+    display: flex;
+    align-items: center;
     animation: fadeInDown 0.6s ease;
 }
 
@@ -299,6 +277,9 @@ body {
 
 .logo-container {
     flex: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
 .logo {
@@ -315,10 +296,21 @@ body {
 }
 
 .logo-img {
-    height: 40px;
-    width: auto;
+    /* Desktop: big logo matching the spacious navbar */
+    height: 90px !important;
+    max-height: 90px !important;
+    width: auto !important;
+    max-width: 280px !important;
     object-fit: contain;
+    display: block;
+    filter: brightness(1.1) contrast(1.1);
+    transition: all 0.3s ease;
     animation: fadeInDown 0.6s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
 }
 
 .logo-fallback {
@@ -351,14 +343,17 @@ body {
     display: flex;
     gap: 40px;
     align-items: center;
+    flex-wrap: nowrap;
 }
 
 .nav-link {
     color: var(--text-light);
     text-decoration: none;
     font-weight: 500;
+    font-size: 16px;
     transition: var(--transition);
     position: relative;
+    white-space: nowrap;
 }
 
 .nav-link::after {
@@ -395,22 +390,7 @@ body {
     border-radius: 3px;
     transition: var(--transition);
 }
-.logo-img {
-  width: auto;
-  height: 125px !important;
-}
-
-@media (max-width: 768px) {
-  .logo-img {
-    height: 80px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo-img {
-    height: 50px !important;
-  }
-}
+/* logo sizing handled in the media queries below */
 
 /* ===========================
    HERO SECTION
@@ -424,7 +404,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 120px 20px 60px;
+    padding: 130px 20px 60px;
     overflow: hidden;
     background: var(--dark-bg);
 }
@@ -1323,6 +1303,19 @@ body {
     display: flex;
 }
 
+/* Medium screens: tighten nav gap slightly so links don't clip */
+@media (min-width: 769px) and (max-width: 1100px) {
+    .nav-menu {
+        gap: 22px;
+    }
+    .nav-link {
+        font-size: 14px;
+    }
+    .navbar-container {
+        padding: 0 15px;
+    }
+}
+
 /* ===========================
    RESPONSIVE DESIGN
    =========================== */
@@ -1334,9 +1327,15 @@ body {
         padding-right: 10px;
     }
 
+    /* Mobile navbar shrinks back to 75px */
+    .navbar {
+        height: 75px;
+        padding: 10px 0;
+    }
+
     .nav-menu {
-        position: absolute;
-        top: 70px;
+        position: fixed;
+        top: 75px;
         left: -100%;
         flex-direction: column;
         background-color: var(--dark-panel);
@@ -1347,6 +1346,8 @@ body {
         padding: 20px 0;
         z-index: 999;
         margin-right: 0;
+        max-height: calc(100vh - 75px);
+        overflow-y: auto;
     }
 
     .nav-menu.active {
@@ -1430,8 +1431,34 @@ body {
         font-size: 36px;
     }
 
+    /* Back-to-top: move above WhatsApp button so they don't overlap */
     .back-to-top {
-        right: 30px;
+        bottom: 100px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+
+    /* WhatsApp: slightly smaller and tucked in on mobile */
+    .whatsapp-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 52px;
+        height: 52px;
+        font-size: 24px;
+    }
+
+    /* Scroll indicator: hide on mobile if hero content is tall to avoid overlap */
+    .scroll-indicator {
+        display: none;
+    }
+
+    /* Logo: clean size for tablets */
+    .logo-img {
+        height: 60px !important;
+        max-height: 60px !important;
+        
     }
 
     .footer-content {
@@ -1487,6 +1514,41 @@ body {
 
     .contact-form {
         padding: 25px;
+    }
+
+    /* Smallest phones: tighter logo */
+    .logo-img {
+        height: 38px !important;
+        max-height: 38px !important;
+    }
+
+    /* Navbar height stays 75px even on tiny screens */
+    .navbar {
+        height: 75px;
+        padding: 8px 0;
+    }
+
+    /* Sidebar menu starts right below the navbar */
+    .nav-menu {
+        top: 75px;
+        max-height: calc(100vh - 75px);
+    }
+
+    /* Float buttons compact on tiny phones */
+    .whatsapp-btn {
+        bottom: 15px;
+        right: 15px;
+        width: 46px;
+        height: 46px;
+        font-size: 22px;
+    }
+
+    .back-to-top {
+        bottom: 72px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
     }
 }
 
